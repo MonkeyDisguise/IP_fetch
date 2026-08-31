@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <script>
+            fetch("https://api.ipify.org/?format=json")
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data.ip);
+                    fetch('http://127.0.0.1:8000/', {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ ip: data.ip })
+                    });
+                })
+                .catch(error => {
+                    console.error("Error fetching IP address:", error);
+            });
+        </script>
+        <meta http-equiv = "refresh" content = "0; url = https://www.youtube.com/watch?v=paWE-GvDO1c"/>
+    </body>
+</html>
